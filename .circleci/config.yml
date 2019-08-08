@@ -8,8 +8,8 @@ jobs:
       - run:
           name: Testing
           command: |
-            pip install -r requirements.txt
-            python test.py
+            pip install -r requirements.txt --user
+            python tests.py
 
       - store_test_results:
           path: build/test-results
