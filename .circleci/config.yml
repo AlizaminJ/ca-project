@@ -41,7 +41,7 @@ jobs:
           name: Run lint
           command: |
             mkdir test-reports
-            /home/circleci/.local/bin/flake8 ./app --output-file=test-reports/flake8.txt --tee
+            /home/circleci/.local/bin/flake8 ./app --output-file=test-reports/flake8.txt --tee --per-file-ignores='app/__init__.py:F401,E402'
       - store_test_results:
           path: test-reports/flake8.txt
   dockerize:
