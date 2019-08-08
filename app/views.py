@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect, url_for, url_for
+from flask import render_template, flash, redirect, url_for
 from app import app, db
 from .forms import PostForm
 from .models import Post
