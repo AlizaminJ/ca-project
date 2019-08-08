@@ -1,3 +1,18 @@
+<style>
+#body{
+    border: 1px solid #aaa;
+    font-family: arial,helvetica,sans-serif;
+    min-height: 5em;
+    font-size: 10pt;
+    outline: medium none;
+    padding: 2px;
+    margin: 0 0 1px 0;
+}
+input[type="submit"]{
+    width: 75px;
+    margin: 0;
+}
+</style>
 {% extends "base.html" %}
 {% block content %}
 <h1>Welcome to CoDe-chan!</h1>
@@ -7,9 +22,9 @@
     </div>
     {% endfor %}
     <hr>
-    Write your post here: <br />
+    Write your post here: <br />{{ form.hidden_tag() }}
     <form action="" method="post" name="post">
-        {{ form.hidden_tag() }}
+        
         <table>
         <tr><td><label for="user">Username</label></td><td>{{ form.user_name(size=30, maxlength=140 ) }}</td></tr><br />
         <tr><td><label for="title">Title</label></td><td>{{ form.title(size=30, maxlength=140 ) }}</td></tr><br />

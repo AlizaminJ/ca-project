@@ -1,5 +1,45 @@
 <html>
   <script src="node_modules/axe-core/axe.min.js"></script>
+  <style>
+    body {
+      background: #ffe url(/media/fade.png) top repeat-x;
+      color: #800;
+    }
+    h2 {
+      font-size: 131%;
+      font-weight: 700;
+    }
+    #announce {
+      /* background: #fff; */
+      color: #000;
+    }
+
+    .box-outer {
+      border: 1px solid;
+      zoom: 100%;
+      margin-bottom: 0.5em;
+      padding-bottom: 0.5em;
+    }
+    #announce .boxbar {
+      background: #800;
+      color: #fff;
+    }
+    .boxbar {
+      background: #fca;
+      color: #800;
+    }
+    .boxbar {
+      position: relative;
+      zoom: 100%;
+    }
+    .boxbar {
+      padding-left: 0.5em;
+      line-height: 2em;
+    }
+    .box-inner {
+      margin-top: -1.1em;
+    }
+  </style>
   <head>
     {% if title %}
     <title>{{ title }} - CoDe-chan</title>
@@ -8,7 +48,25 @@
     {% endif %}
   </head>
   <body>
-    <div><a href="/index">CoDe Academy</a></div>
+    <div class="box-outer" id="announce">
+      <div class="box-inner">
+        <div class="boxbar">
+          <h2>What is CoDe-chan?</h2>
+          <a data-cmd="x-wot" href="#" class="closebutton"></a>
+        </div>
+        <div class="boxcontent">
+          CoDe-chan is a simple text-based bulletin board where anyone can post
+          comments and share sexy code. There are no boards dedicated to
+          Japanese animation or culture or videogames, music, or photography.
+          Users do not need to register an account before participating in the
+          community. Feel free to post on this page about something that
+          interests you and jump right in! Be sure to familiarize yourself with
+          the Rules before posting, 1. never talk about CoDe-chan. 2. repeat
+          step 1.
+          <div id="wot-cnt"></div>
+        </div>
+      </div>
+    </div>
     <hr />
     {% with messages = get_flashed_messages() %} {% if messages %}
     <ul>
