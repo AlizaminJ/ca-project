@@ -1,0 +1,19 @@
+version: 2.0
+jobs:
+  build:
+    docker:
+      - image: circleci/python:latest
+    steps:
+      - checkout:
+      - run:
+          name: Testing
+          command: |
+            pip install -r requirements.txt
+            python test.py
+
+      - store_test_results:
+          path: build/test-results
+
+      - store_artifacts:
+          path: build/libs
+          destination: prefix
