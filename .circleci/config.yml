@@ -8,7 +8,7 @@ jobs:
       - run:
           name: Testing
           command: |
-            pip install -r requirements.txt
+            pip install -r requirements.txt --user
             python test.py
 
       - store_test_results:
