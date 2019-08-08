@@ -68,4 +68,17 @@ workflows:
   version: 2
   package-and-test:
     jobs:
-      - deploy
+      - lint
+      - test:
+          requires:
+            - lint
+      - package:
+          requires:
+            - lint
+            - test
+      - dockerize:
+          requires:
+            - package
+      - deploy:
+          requires:
+            - dockerize
