@@ -53,6 +53,15 @@ jobs:
       - run: docker tag $DOCKER_USER/kebabanon:$CIRCLE_SHA1 $DOCKER_USER/kebabanon:latest
       - run: docker push $DOCKER_USER/kebabanon:$CIRCLE_SHA1
       - run: docker push $DOCKER_USER/kebabanon:latest
+  deploy:
+    machine:
+      enabled: true
+    steps:
+      - run:
+          name: Deploy Over SSH
+          command: |
+            ssh $VM_USER@$HOST_IP "touch ~/dennisvarher"
+      
 workflows:
   version: 2
   package-and-test:
@@ -68,3 +77,4 @@ workflows:
       - dockerize:
           requires:
             - package
+      - deploy
