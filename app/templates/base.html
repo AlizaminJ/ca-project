@@ -1,23 +1,28 @@
 <html>
-    <head>
-        {% if title %}
-        <title>{{ title }} - CoDe Academy</title>
-        {% else %}
-        <title>Welcome to CoDe Academy 2017</title>
-        {% endif %}
-    </head>
-    <body>
-        <div> <a href="/index">CoDe Academy</a></div>
-        <hr>
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-            <ul>
-                {% for message in messages %}
-                <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-            {% endif %}
-        {% endwith %}
-        {% block content %}{% endblock %}
-    </body>
+  <script src="node_modules/axe-core/axe.min.js"></script>
+  <head>
+    {% if title %}
+    <title>{{ title }} - CoDe-chan</title>
+    {% else %}
+    <title>Welcome to CoDe Academy 2017</title>
+    {% endif %}
+  </head>
+  <body>
+    <div><a href="/index">CoDe Academy</a></div>
+    <hr />
+    {% with messages = get_flashed_messages() %} {% if messages %}
+    <ul>
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %} {% endwith %} {% block content %}{% endblock %}
+  </body>
+  <script>
+    axe.run(function(err, results) {
+      if (err) throw err;
+      ok(results.violations.length === 0, "Should be no accessibility issues");
+      // complete the async call
+    });
+  </script>
 </html>
