@@ -12,7 +12,7 @@ jobs:
       - run:
           name: Run tests
           command: |
-            python tests.py
+            pytest tests.py
 
       - store_test_results:
           path: build/test-results
