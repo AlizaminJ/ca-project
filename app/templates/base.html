@@ -1,8 +1,7 @@
 <html>
-  <script src="node_modules/axe-core/axe.min.js"></script>
   <style>
     body {
-      background: #ffe url(/media/fade.png) top repeat-x;
+      background: #ffe url("media/fade.png") repeat-x top;
       color: #800;
     }
     h2 {
@@ -16,7 +15,6 @@
 
     .box-outer {
       border: 1px solid;
-      zoom: 100%;
       margin-bottom: 0.5em;
       padding-bottom: 0.5em;
     }
@@ -30,11 +28,9 @@
     }
     .boxbar {
       position: relative;
-      zoom: 100%;
     }
     .boxbar {
       padding-left: 0.5em;
-      line-height: 2em;
     }
     .box-inner {
       margin-top: -1.1em;
@@ -76,11 +72,4 @@
     </ul>
     {% endif %} {% endwith %} {% block content %}{% endblock %}
   </body>
-  <script>
-    axe.run(function(err, results) {
-      if (err) throw err;
-      ok(results.violations.length === 0, "Should be no accessibility issues");
-      // complete the async call
-    });
-  </script>
 </html>
