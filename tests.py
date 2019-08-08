@@ -47,5 +47,16 @@ class TestCase(unittest.TestCase):
         number_of_posts = len(Post.query.all())
         self.assertEqual(number_of_posts,1)
 
+    def test_info_is_correct(self):
+        post = Post(title='test1', user_name='test1', body='test1', timestamp=datetime.utcnow())
+        db.session.add(post)
+        db.session.commit()
+        title = post.title
+        user_name = post.user_name
+        body = post.body
+        self.assertEqual(title, 'test1')
+        self.assertEqual(user_name, 'test1')
+        self.assertEqual(body, 'test1')
+
 if __name__ == '__main__':
     unittest.main()
