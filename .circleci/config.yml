@@ -60,7 +60,7 @@ jobs:
       - run:
           name: Deploy Over SSH
           command: |
-            ssh $VM_USER@$HOST_IP "touch ~/dennisvarher"
+            ssh $VM_USER@$HOST_IP "docker pull samuelvimes/kebabanon:latest && docker-compose up"
       
 workflows:
   version: 2
@@ -77,4 +77,6 @@ workflows:
       - dockerize:
           requires:
             - package
-      - deploy
+      - deploy:
+          requires:
+            - dockerize
