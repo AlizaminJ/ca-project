@@ -14,16 +14,18 @@ jobs:
           destination: prefix
   test:
     docker:
-    - image: circleci/python:latest
+      - image: circleci/python:latest
     steps:
       - checkout:
       - run:
           name: Install Dependencies
           command: |
             pip install -r requirements.txt --user
+    test:
       - run:
           name: Run tests
           command: |
+            flake8 .
             mkdir test-reports
             /home/circleci/.local/bin/pytest --junitxml=test-reports/junit.xml tests.py
       - store_test_results:
@@ -35,4 +37,4 @@ workflows:
       - package
       - test:
           requires:
-            - package
+            - build
