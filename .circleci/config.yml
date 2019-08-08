@@ -35,4 +35,4 @@ workflows:
       - docker
       - test:
           requires:
-            - build
+            - docker
