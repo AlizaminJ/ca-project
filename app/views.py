@@ -1,6 +1,6 @@
 from flask import render_template, flash, redirect, url_for, url_for
 from app import app, db
-from .forms import LoginForm, PostForm
+from .forms import PostForm
 from .models import Post
 from datetime import datetime
 
@@ -23,16 +23,6 @@ def index():
             user=user,
             posts=posts,
             form=form)
-
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    form = LoginForm()
-    if form.validate_on_submit():
-        flash('Login requested for OpenID="%s", remember_me=%s' % (form.openid.data, str(form.remember_me.data)))
-        return redirect('/index')
-    return render_template('login.html',
-                title='Sign In',
-                form= form)
 
 @app.route('/post', methods=['GET', 'POST'])
 def post():
