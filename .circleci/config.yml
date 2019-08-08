@@ -39,8 +39,8 @@ jobs:
             pip install -r requirements.txt --user
       - run:
           name: Run lint
-          command: |           
-            mkdir test-reports 
+          command: |
+            mkdir test-reports
             /home/circleci/.local/bin/flake8 ./app --output-file=test-reports/flake8.txt --tee
       - store_test_results:
           path: test-reports/flake8.txt
@@ -50,7 +50,9 @@ jobs:
       - checkout
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
       - run: docker build -t $DOCKER_USER/kebabanon:$CIRCLE_SHA1 .
+      - run: docker tag $DOCKER_USER/kebabanon:$CIRCLE_SHA1 $DOCKER_USER/kebabanon:latest
       - run: docker push $DOCKER_USER/kebabanon:$CIRCLE_SHA1
+      - run: docker push $DOCKER_USER/kebabanon:latest
 workflows:
   version: 2
   package-and-test:
