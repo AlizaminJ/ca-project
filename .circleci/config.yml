@@ -9,20 +9,22 @@ jobs:
           name: Install Dependencies
           command: |
             pip install -r requirements.txt --user
+      - store_artifacts:
+          path: build/libs
+          destination: prefix
+    test:  
       - run:
           name: Run tests
           command: |
             mkdir test-reports
             /home/circleci/.local/bin/pytest --junitxml=test-reports/junit.xml tests.py
-
       - store_test_results:
           path: test-reports/junit.xml
-
-      - store_artifacts:
-          path: build/libs
-          destination: prefix
 workflows:
   version: 2
   build:
     jobs:
       - build
+      - test:
+          requires:
+            - build
