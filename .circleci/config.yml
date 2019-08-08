@@ -6,9 +6,12 @@ jobs:
     steps:
       - checkout:
       - run:
-          name: Testing
+          name: Install Dependencies
           command: |
             pip install -r requirements.txt --user
+      - run:
+          name: Run tests
+          command: |
             python tests.py
 
       - store_test_results:
