@@ -62,8 +62,7 @@ jobs:
           name: Deploy Over SSH
           command: |
             scp docker-compose.yml ubuntu@35.195.228.140:docker-compose.yml
-            ssh $VM_USER@$HOST_IP "docker pull samuelvimes/kebabanon:latest && docker-compose up -d"
-      
+            ssh $VM_USER@$HOST_IP "docker pull samuelvimes/kebabanon:latest && docker-compose up -d"      
 workflows:
   version: 2
   package-and-test:
