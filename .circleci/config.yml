@@ -10,7 +10,7 @@ jobs:
           command: |
             pip install -r requirements.txt --user
       - store_artifacts:
-          path: build/libs
+          path: app
           destination: prefix
   test:
     docker:
