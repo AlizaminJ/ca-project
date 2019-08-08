@@ -24,7 +24,6 @@ jobs:
       - run:
           name: Run tests
           command: |
-            /home/circleci/.local/bin/flake8 .
             mkdir test-reports
             /home/circleci/.local/bin/pytest --junitxml=test-reports/junit.xml tests.py
       - store_test_results:
