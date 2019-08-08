@@ -30,6 +30,23 @@ jobs:
             /home/circleci/.local/bin/pytest --junitxml=test-reports/junit.xml tests.py
       - store_test_results:
           path: test-reports/junit.xml
+  lint:
+    docker:
+      - image: circleci/python:latest
+    steps:
+      - checkout:
+      - run:
+          name: Install Dependencies
+          command: |
+            pip install -r requirements.txt --user
+    test:
+      - run:
+          name: Run lint
+          command: |           
+            mkdir test-reports 
+            /home/circleci/.local/bin/flake8 . --output-file=test-reports/flake8.txt --tee
+      - store_test_results:
+          path: test-reports/flake8.txt
   dockerize:
     machine: true
     steps:
@@ -45,6 +62,10 @@ workflows:
       - test:
           requires:
             - package
+      - lint:
+          requires:
+            - package
+            - test
       - dockerize:
           requires:
             - test
